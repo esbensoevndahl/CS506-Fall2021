@@ -11,7 +11,12 @@ def point_avg(points):
     
     Returns a new point which is the center of all the points.
     """
-    raise NotImplementedError()
+    total_point = points[0]
+    for i, x in points[1:]:
+        total_point += x
+    point_avg = total_point / i + 2
+
+    return point_avg
 
 
 def update_centers(dataset, assignments):
@@ -21,7 +26,16 @@ def update_centers(dataset, assignments):
     Compute the center for each of the assigned groups.
     Return `k` centers in a list
     """
-    raise NotImplementedError()
+    num_assignments = max(assignments)
+    points = [[0]]*num_assignments
+    ret = []
+    for i, x in enumerate(assignments):
+        points[x].append(dataset[i])
+    for i, x in enumerate(points):
+        avg_p = point_avg(points[i])
+        ret.append(avg_p)
+    return ret
+
 
 def assign_points(data_points, centers):
     """
@@ -43,17 +57,21 @@ def distance(a, b):
     """
     Returns the Euclidean distance between a and b
     """
-    raise NotImplementedError()
+    res = 0
+    for i in range(len(a)):
+        res += (a[i] - b[i])**2
+    return res**(1/2)
 
 def distance_squared(a, b):
-    raise NotImplementedError()
+    return distance(a,b)**2
 
 def generate_k(dataset, k):
     """
     Given `data_set`, which is an array of arrays,
     return a random set of k points from the data_set
     """
-    raise NotImplementedError()
+    random.shuffle(dataset)
+    return dataset[:k]
 
 def cost_function(clustering):
     raise NotImplementedError()
