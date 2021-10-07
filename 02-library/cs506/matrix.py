@@ -33,7 +33,3 @@ def get_determinant(matrix):
     #if matrix is not square; raise input errer
     else:
         raise ValueError("Input matrices must be square")
-
-matrix = [[1,2,3,4,1],[8,5,6,7,2],[9,12,10,11,3],[13,14,16,15,4],[10,8,6,4,2]]
-Det = get_determinant(matrix)
-print(round(Det,9))
